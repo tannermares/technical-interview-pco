@@ -1,6 +1,6 @@
-// Deprecated since jQuery 1.7
-element_name = container + " .plan"
+// Updated Method since JQuery 1.7
+element_name = container + " .plan";
 
-$(element_name).die().live('click', function(el) { 
-  $(el).hide() 
+$(element_name).off().on('click', function(el) { 
+  $(el).hide();
 });
