@@ -2,7 +2,7 @@
 # Make the class be able to tell you, the most awesome person, 
 # the average awesomeness and print out a list of the top 10 awesome people. Make sure to include tests. 
 class Awesomeness
-    def initialize
+  def initialize
     @persons = []
   end
   # Add person to persons attribute only if person is a Person
