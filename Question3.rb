@@ -5,15 +5,17 @@ class Awesomeness
     def initialize
     @persons = []
   end
-
+  # Add person to persons attribute only if person is a Person
   def addToPoll(person)
     @persons << person if person.instance_of?(Person)
   end
-
+  # Return persons property
   def getPersons
     return @persons
   end
-
+  # Create a new hash, loop through all persons, 
+  # if current person being checked is higher than last person, set as new highest person.
+  # return most awesome person
   def getMostAwesomePerson
     mostAwesomePerson = Hash.new
     mostAwesomePerson[:name] = nil
@@ -26,23 +28,25 @@ class Awesomeness
     end
     return mostAwesomePerson
   end
-
+  # Loop through each person and sum their awesomeness
+  # return the sum divided by number of people
   def getAverageAwesomeness
     sum = 0
-    @persons.each do |p|
-      sum += p.awesomeness.to_i
+    @persons.each do |person|
+      sum += person.awesomeness.to_i
     end
     return sum/@persons.length
   end
-
-  def getTop10
+  # Use destructive sort method to sort the persons array by awesomeness.
+  # Return the last ten values of the array
+  def getTop10AwesomePeeps
     @persons.sort! do |a, b|
       a.awesomeness.to_i <=> b.awesomeness.to_i
     end
-    return @persons[@persons.length-10..@persons.length-1]
+    return @persons[-10..-1]
   end
 end
-
+# Person class - used to store name and awesomeness of each person.
 class Person
   def initialize
     @name = nil
