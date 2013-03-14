@@ -13,20 +13,14 @@ class Awesomeness
   def getPersons
     return @persons
   end
-  # Create a new hash, loop through all persons, 
-  # if current person being checked is higher than last person, set as new highest person.
-  # return most awesome person
+  # Sort persons array destructively
+  # return last item in array (most awesome person)
+  # (https://ariejan.net/2007/01/28/ruby-sort-an-array-of-objects-by-an-attribute)
   def getMostAwesomePerson
-    mostAwesomePerson = Hash.new
-    mostAwesomePerson[:name] = nil
-    mostAwesomePerson[:awesomeness] = 0
-    @persons.each do |person|
-      if person.awesomeness > mostAwesomePerson[:awesomeness].to_i
-        mostAwesomePerson[:name] = person.name
-        mostAwesomePerson[:awesomeness] = person.awesomeness.to_i
-      end
+    @persons.sort! do |a, b|
+      a.awesomeness.to_i <=> b.awesomeness.to_i
     end
-    return mostAwesomePerson
+    return @persons[-1]
   end
   # Loop through each person and sum their awesomeness
   # return the sum divided by number of people
@@ -39,6 +33,7 @@ class Awesomeness
   end
   # Use destructive sort method to sort the persons array by awesomeness.
   # Return the last ten values of the array
+  # (https://ariejan.net/2007/01/28/ruby-sort-an-array-of-objects-by-an-attribute)
   def getTop10AwesomePeeps
     @persons.sort! do |a, b|
       a.awesomeness.to_i <=> b.awesomeness.to_i
@@ -52,19 +47,15 @@ class Person
     @name = nil
     @awesomeness = 0
   end
-
   def setName(name)
     @name = name.to_s
   end
-
   def setAwesomeness(number)
     @awesomeness = number.to_i
   end
-
   def name
     return @name
   end
-
   def awesomeness
     return @awesomeness
   end
