@@ -1,4 +1,5 @@
 // Updated Method since JQuery 1.7
+// http://api.jquery.com/die/
 element_name = container + " .plan";
 // Replaced die() and live() methods with new off() and on().
 // added event.preventDefault() to stop default action from clicking element

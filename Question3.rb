@@ -15,12 +15,9 @@ class Awesomeness
   end
   # Sort persons array destructively
   # return last item in array (most awesome person)
-  # (https://ariejan.net/2007/01/28/ruby-sort-an-array-of-objects-by-an-attribute)
+  # http://andreacfm.com/2011/07/27/make-your-ruby-classes-comparable-and-enumerable/
   def getMostAwesomePerson
-    @persons.sort! do |a, b|
-      a.awesomeness.to_i <=> b.awesomeness.to_i
-    end
-    return @persons[-1]
+    return @persons.max
   end
   # Loop through each person and sum their awesomeness
   # return the sum divided by number of people
@@ -35,9 +32,7 @@ class Awesomeness
   # Return the last ten values of the array
   # (https://ariejan.net/2007/01/28/ruby-sort-an-array-of-objects-by-an-attribute)
   def getTop10AwesomePeeps
-    @persons.sort! do |a, b|
-      a.awesomeness.to_i <=> b.awesomeness.to_i
-    end
+    @persons.sort!
     return @persons[-10..-1]
   end
 end
@@ -58,5 +53,8 @@ class Person
   end
   def awesomeness
     return @awesomeness
+  end
+  def <=>(other)
+    @awesomeness <=> other.awesomeness
   end
 end
